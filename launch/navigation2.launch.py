@@ -16,7 +16,7 @@ def generate_launch_description():
 	use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 	with_rviz = LaunchConfiguration('with_rviz', default='true')
 	nav2_config_file = LaunchConfiguration('params', 
-						default=os.path.join(pkg_rm3_nav, 'config', 'nav2.yaml'))
+						default=os.path.join(pkg_rm3_nav, 'config', 'nav2_params.yaml'))
 	rviz_config_file = LaunchConfiguration('rviz_config',
 						default=os.path.join(pkg_nav2_bringup, 'rviz', 'nav2_default_view.rviz'))
 
@@ -37,7 +37,9 @@ def generate_launch_description():
 					arguments=['-d', rviz_config_file],
 					parameters=[{'use_sim_time': use_sim_time}],
 					output='screen',
-					condition=IfCondition(with_rviz))	
+					condition=IfCondition(with_rviz))
+					
+
 	
 	return LaunchDescription([
 		DeclareLaunchArgument('namespace',
